@@ -1,6 +1,10 @@
-# Nuxt 3 Minimal Starter
+# IBGE
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+Cria gráficos com os dados da [API do IBGE](https://servicodados.ibge.gov.br/api/docs/agregados?versao=3)
+
+Selecione Pesquisa, Agregado, Variáveis, Períodos, Classificações/Categorias, Nível Geográfico/Localidades e Opções de Montagem do Gráfico ou Tabela.
+
+Destina-se a todos que desejam de forma fácil criar gráficos ou tabelas apartir dos dados das pesquisas do IBGE.
 
 ## Setup
 
