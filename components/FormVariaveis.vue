@@ -28,7 +28,7 @@ const placeholder = computed(() =>
 const options = computed(() =>
   agregado.value && !isPending.value
     ? data.value.variaveis.map((variavel: Variavel) => {
-        return { label: variavel.nome, value: variavel.id };
+        return { label: variavel.nome, value: variavel.id.toString() };
       })
     : []
 );

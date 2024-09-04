@@ -23,7 +23,6 @@ import { storeToRefs } from "pinia";
 import { useAgregadoByIdQuery } from "~/composables/useAgregadoByIdQuery";
 import { useLocalidadesByAgregadoIdAndNiveisQuery } from "~/composables/useLocalidadesByAgregadoIdAndNiveisQuery";
 import type { Localidade } from "~/types/Localidade";
-import type { MultiSelectOption } from "~/types/MultiSelectOption";
 
 const formStore = useFormStore();
 const { agregado, localidades } = storeToRefs(formStore);

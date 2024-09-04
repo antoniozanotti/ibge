@@ -4,7 +4,7 @@ import type { Ref } from "vue";
 import axios from "axios";
 
 async function fetchLocalidadesByAgregadoIdAndNiveis(id: Ref, niveis: Ref) {
-  if (id.value == "" || niveis.value.length === 0) {
+  if (!id.value || niveis.value.length === 0) {
     return [];
   }
   const response = await axios.get(

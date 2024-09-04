@@ -19,7 +19,8 @@ import type { Agregado } from "~/types/Agregado";
 
 const { isPending, data } = useAgregadosByPesquisaQuery();
 const formStore = useFormStore();
-const { pesquisa, agregado, variaveis } = storeToRefs(formStore);
+const { pesquisa, agregado, variaveis, periodos, localidades, classificacoes } =
+  storeToRefs(formStore);
 
 const placeholder = computed(() =>
   isPending.value ? "Carregando..." : "Selecione um agregado"
@@ -36,6 +37,9 @@ const options = computed(() =>
 );
 
 watch(agregado, () => {
-  variaveis.value = [];
-})
+  variaveis.value = undefined;
+  periodos.value = undefined;
+  localidades.value = undefined;
+  classificacoes.value = undefined;
+});
 </script>

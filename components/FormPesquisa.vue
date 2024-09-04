@@ -33,6 +33,6 @@ const options = computed(() =>
 );
 
 watch(pesquisa, () => {
-  agregado.value = "";
+  agregado.value = undefined;
 });
 </script>
