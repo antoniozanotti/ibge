@@ -1,5 +1,5 @@
 <template>
-  <UFormGroup label="Variáveis" name="variaveis" v-if="agregado">
+  <UFormGroup label="Períodos" name="periodos" v-if="agregado">
     <Multiselect
       v-model="model"
       :options="options"
@@ -19,25 +19,25 @@ import { useFormStore } from "@/stores/form";
 import { storeToRefs } from "pinia";
 import Multiselect from "vue-multiselect";
 import type { Option } from "@/types/Option";
-import type { Variavel } from "@/types/Variavel";
-import { useAgregadoByIdQuery } from "~/composables/useAgregadoByIdQuery";
+import type { Periodo } from "@/types/Periodo";
+import { usePeriodosByAgregadoIdQuery } from "~/composables/usePeriodosByAgregadoIdQuery";
 
 const formStore = useFormStore();
-const { agregado, variaveis } = storeToRefs(formStore);
+const { agregado, periodos } = storeToRefs(formStore);
 const placeholder = ref("Carregando...");
 const options = ref([{ label: "", value: "" }]);
 const model = ref();
-const { isPending, data } = useAgregadoByIdQuery(agregado);
+const { isPending, data } = usePeriodosByAgregadoIdQuery(agregado);
 
 watchEffect(async () => {
   if (!isPending.value && agregado.value) {
     let opts = [];
     opts.push(
-      ...data.value.variaveis.map((variavel: Variavel) => {
-        return { label: variavel.nome, value: variavel.id };
+      ...data.value.map((periodo: Periodo) => {
+        return { label: periodo.literals[0], value: periodo.id };
       })
     );
-    placeholder.value = "Selecione uma ou mais variáveis";
+    placeholder.value = "Selecione um ou mais períodos";
     options.value = opts;
     model.value = null;
   }
@@ -45,7 +45,7 @@ watchEffect(async () => {
 
 watchEffect(async () => {
   if (model.value) {
-    variaveis.value = model.value.map((item: Option) => item.value);
+    periodos.value = model.value.map((item: Option) => item.value);
   }
 });
 </script>

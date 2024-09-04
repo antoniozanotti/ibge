@@ -8,6 +8,7 @@
     <FormPesquisa />
     <FormAgregado />
     <FormVariaveis />
+    <FormPeriodos />
     {{ variaveis }}
     <UButton type="submit"> Gerar Gráfico </UButton>
   </UForm>
