@@ -6,5 +6,6 @@ export const useFormStore = defineStore("form", () => {
   const agregado = ref("");
   const variaveis = ref<string[]>([]);
   const periodos = ref<string[]>([]);
-  return { pesquisa, agregado, variaveis, periodos };
+  const localidades = ref<string[]>([]);
+  return { pesquisa, agregado, variaveis, periodos, localidades };
 });

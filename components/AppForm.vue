@@ -6,10 +6,15 @@
     @submit="onSubmit"
   >
     <FormPesquisa />
+    {{ pesquisa }}
     <FormAgregado />
+    {{ agregado }}
     <FormVariaveis />
-    <FormPeriodos />
     {{ variaveis }}
+    <FormPeriodos />
+    {{ periodos }}
+    <FormLocalidades />
+    {{ localidades }}>
     <UButton type="submit"> Gerar Gráfico </UButton>
   </UForm>
 </template>
@@ -21,7 +26,7 @@ import { useFormStore } from "@/stores/form";
 import { storeToRefs } from "pinia";
 
 const formStore = useFormStore();
-const { variaveis } = storeToRefs(formStore);
+const { pesquisa, agregado, variaveis, periodos, localidades } = storeToRefs(formStore);
 
 const schema = z.object({
   pesquisa: z.string(),
@@ -34,5 +39,3 @@ async function onSubmit(event: FormSubmitEvent<Schema>) {
   console.log(event.data);
 }
 </script>
-
-<style src="vue-multiselect/dist/vue-multiselect.css"></style>
