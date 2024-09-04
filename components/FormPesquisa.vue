@@ -4,7 +4,7 @@
       v-model="model"
       :options="options"
       :show-labels="false"
-      :loading="loading"
+      :loading="isPending"
       label="label"
       track-by="value"
       :placeholder="placeholder"
@@ -16,28 +16,29 @@
 import { useFormStore } from "@/stores/form";
 import { storeToRefs } from "pinia";
 import Multiselect from "vue-multiselect";
+import { useAgregadosByPesquisaQuery } from "@/composables/useAgregadosByPesquisaQuery";
+import type { Pesquisa } from "~/types/Pesquisa";
 
+const { isPending, data } = useAgregadosByPesquisaQuery();
 const formStore = useFormStore();
-const { agregadosPorPesquisa, pesquisa, agregado, variaveis } =
-  storeToRefs(formStore);
+const { pesquisa, agregado, variaveis } = storeToRefs(formStore);
 const placeholder = ref("Carregando...");
 const options = ref([{ label: "", value: "" }]);
-const loading = ref(true);
 const model = ref();
 
 watchEffect(async () => {
-  if (agregadosPorPesquisa.value) {
+  if (!isPending.value) {
     let opts = [];
     opts.push(
-      ...agregadosPorPesquisa.value.map((pesquisa) => {
+      ...data.value.map((pesquisa: Pesquisa) => {
         return { label: pesquisa.nome, value: pesquisa.id };
       })
     );
     placeholder.value = "Selecione uma pesquisa";
     options.value = opts;
-    loading.value = false;
   }
 });
+
 watchEffect(async () => {
   if (model.value) {
     pesquisa.value = model.value.value;

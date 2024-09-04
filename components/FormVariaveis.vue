@@ -4,7 +4,7 @@
       v-model="model"
       :options="options"
       :show-labels="false"
-      :loading="loading"
+      :loading="isPending"
       label="label"
       track-by="value"
       :placeholder="placeholder"
@@ -15,38 +15,34 @@
 </template>
 
 <script setup lang="ts">
-import { API_URL } from "@/consts";
 import { useFormStore } from "@/stores/form";
 import { storeToRefs } from "pinia";
 import Multiselect from "vue-multiselect";
 import type { Option } from "@/types/Option";
 import type { Variavel } from "@/types/Variavel";
+import { useAgregadoByIdQuery } from "~/composables/useAgregadoByIdQuery";
 
 const formStore = useFormStore();
-const { agregadosPorPesquisa, pesquisa, agregado, variaveis } =
-  storeToRefs(formStore);
-
+const { agregado, variaveis } = storeToRefs(formStore);
 const placeholder = ref("Carregando...");
 const options = ref([{ label: "", value: "" }]);
-const loading = ref(true);
 const model = ref();
+const { isPending, data } = useAgregadoByIdQuery(agregado);
 
 watchEffect(async () => {
-  if (agregadosPorPesquisa.value && agregado.value) {
-    model.value = null;
+  if (!isPending.value && agregado.value) {
     let opts = [];
-    const url = `${API_URL}agregados/${agregado.value}/metadados`;
-    const response = await (await fetch(url)).json();
     opts.push(
-      ...response.variaveis.map((variavel: Variavel) => {
+      ...data.value.variaveis.map((variavel: Variavel) => {
         return { label: variavel.nome, value: variavel.id };
       })
     );
     placeholder.value = "Selecione uma variável";
     options.value = opts;
-    loading.value = false;
+    model.value = null;
   }
 });
+
 watchEffect(async () => {
   if (model.value) {
     variaveis.value = model.value.map((item: Option) => item.value);
