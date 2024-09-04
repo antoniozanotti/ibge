@@ -10,7 +10,16 @@
     "postinstall": "nuxt prepare"
   },
   "dependencies": {
+    "@nuxt/ui": "^2.18.4",
+    "@pinia/nuxt": "^0.5.4",
     "nuxt": "^3.13.0",
-    "vue": "latest"
+    "pinia": "^2.2.2",
+    "vue": "^3.5.0",
+    "vue-multiselect": "^3.0.0",
+    "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4",
+    "vue-tsc": "2.0.29"
   }
 }
