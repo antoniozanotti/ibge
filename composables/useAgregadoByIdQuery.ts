@@ -8,7 +8,7 @@ async function fetchAgregadoById(id: Ref) {
     return {};
   }
   const response = await axios.get(`${API_URL}agregados/${id.value}/metadados`);
-  return response.data.json();
+  return response.data;
 }
 
 export function useAgregadoByIdQuery(id: Ref) {

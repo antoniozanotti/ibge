@@ -4,7 +4,7 @@ import axios from 'axios';
 
 async function fetchAgregadosByPesquisa() {
   const response = await axios.get(`${API_URL}agregados`);
-  return response.data.json();
+  return response.data;
 }
 
 export function useAgregadosByPesquisaQuery() {
