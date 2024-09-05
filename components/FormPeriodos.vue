@@ -1,5 +1,5 @@
 <template>
-  <UFormGroup label="Períodos" name="periodos" v-if="agregado">
+  <UFormGroup label="Períodos *" name="periodos" v-if="agregado">
     <USelectMenu
       v-model="periodos"
       :options="options"

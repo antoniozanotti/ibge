@@ -8,9 +8,9 @@ export const formSchema = z.object({
   agregado: z.string({
     required_error: "Agregado é obrigatório",
   }),
-  variaveis: z
-    .string({ required_error: "Selecione ao menos uma variável" })
-    .array(),
+  variavel: z.string({
+    required_error: "Variável é obrigatório",
+  }),
   periodos: z
     .string({ required_error: "Selecione ao menos um período" })
     .array(),
@@ -24,16 +24,24 @@ export type FormSchema = z.output<typeof formSchema>;
 export const useFormStore = defineStore("form", () => {
   const pesquisa = ref();
   const agregado = ref();
-  const variaveis = ref<string[]>();
+  const variavel = ref();
   const periodos = ref<string[]>();
   const localidades = ref<string[]>();
   const classificacoes = ref<string[]>();
+  const tipoMontagem = ref();
+  const estiloGrafico = ref();
+  const grupoDeDados = ref();
+  const largura = ref("500")
   return {
     pesquisa,
     agregado,
-    variaveis,
+    variavel,
     periodos,
     localidades,
     classificacoes,
+    tipoMontagem,
+    estiloGrafico,
+    grupoDeDados,
+    largura
   };
 });

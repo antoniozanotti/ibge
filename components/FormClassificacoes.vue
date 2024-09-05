@@ -8,6 +8,7 @@
       :label="option.label"
       :name="`classificacoes[${option.id}]`"
       v-for="option of options"
+      class="pl-5 pt-3"
     >
       <USelectMenu
         v-model="classificacoes"

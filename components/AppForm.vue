@@ -7,10 +7,11 @@
   >
     <FormPesquisa />
     <FormAgregado />
-    <FormVariaveis />
+    <FormVariavel />
     <FormPeriodos />
     <FormLocalidades />
     <FormClassificacoes />
+    <FormMontagem />
     <UButton type="submit"> Gerar Gráfico </UButton>
   </UForm>
 </template>
@@ -21,7 +22,7 @@ import { useFormStore, formSchema, type FormSchema } from "@/stores/form";
 import { storeToRefs } from "pinia";
 
 const form = useFormStore();
-const { pesquisa, agregado, variaveis, periodos, localidades, classificacoes } =
+const { pesquisa, agregado, variavel, periodos, localidades, classificacoes } =
   storeToRefs(form);
 
 async function onSubmit(event: FormSubmitEvent<FormSchema>) {

@@ -1,5 +1,5 @@
 <template>
-  <UFormGroup label="Agregado" name="agregado" v-if="pesquisa">
+  <UFormGroup label="Agregado *" name="agregado" v-if="pesquisa">
     <USelectMenu
       v-model="agregado"
       :options="options"
@@ -19,7 +19,7 @@ import type { Agregado } from "~/types/Agregado";
 
 const { isPending, data } = useAgregadosByPesquisaQuery();
 const formStore = useFormStore();
-const { pesquisa, agregado, variaveis, periodos, localidades, classificacoes } =
+const { pesquisa, agregado, variavel, periodos, localidades, classificacoes } =
   storeToRefs(formStore);
 
 const placeholder = computed(() =>
@@ -37,7 +37,7 @@ const options = computed(() =>
 );
 
 watch(agregado, () => {
-  variaveis.value = undefined;
+  variavel.value = undefined;
   periodos.value = undefined;
   localidades.value = undefined;
   classificacoes.value = undefined;

@@ -1,12 +1,16 @@
 <template>
-  <UFormGroup label="Variáveis" name="variaveis" v-if="agregado">
+  <UFormGroup
+    label="Variável *"
+    name="variavel"
+    v-if="agregado"
+    help="Será a unidade de medida principal."
+  >
     <USelectMenu
-      v-model="variaveis"
+      v-model="variavel"
       :options="options"
       valueAttribute="value"
       :loading="isPending"
       :placeholder="placeholder"
-      :multiple="true"
     />
   </UFormGroup>
 </template>
@@ -18,7 +22,7 @@ import type { Variavel } from "@/types/Variavel";
 import { useAgregadoByIdQuery } from "~/composables/useAgregadoByIdQuery";
 
 const formStore = useFormStore();
-const { agregado, variaveis } = storeToRefs(formStore);
+const { agregado, variavel } = storeToRefs(formStore);
 const { isPending, data } = useAgregadoByIdQuery(agregado);
 
 const placeholder = computed(() =>
