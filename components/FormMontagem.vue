@@ -1,20 +1,5 @@
 <template>
-  <UFormGroup label="Montagem" name="montagem">
-    <UFormGroup
-      label="Tipo de Montagem *"
-      name="tipoMontagem"
-      class="pl-5 pt-3"
-    >
-      <URadioGroup v-model="tipoMontagem" :options="tipoMontagemOptions" />
-    </UFormGroup>
-    <UFormGroup
-      label="Estilo do Gráfico *"
-      name="estiloGrafico"
-      class="pl-5 pt-3"
-      v-if="tipoMontagem == 'grafico'"
-    >
-      <URadioGroup v-model="estiloGrafico" :options="estiloGraficoOptions" />
-    </UFormGroup>
+  <UFormGroup label="Montagem" name="montagem" v-if="pesquisa && agregado && variavel && periodos && localidades">
     <UFormGroup
       label="Grupo de Dados *"
       name="grupoDeDados"
@@ -30,6 +15,21 @@
       help="A largura da tabela ou gráfico em pixels."
     >
       <UInput v-model="largura" />
+    </UFormGroup>
+    <UFormGroup
+      label="Tipo de Montagem *"
+      name="tipoMontagem"
+      class="pl-5 pt-3"
+    >
+      <URadioGroup v-model="tipoMontagem" :options="tipoMontagemOptions" />
+    </UFormGroup>
+    <UFormGroup
+      label="Estilo do Gráfico *"
+      name="estiloGrafico"
+      class="pl-5 pt-3"
+      v-if="tipoMontagem == 'grafico'"
+    >
+      <URadioGroup v-model="estiloGrafico" :options="estiloGraficoOptions" />
     </UFormGroup>
   </UFormGroup>
 </template>
@@ -49,7 +49,7 @@ const {
   tipoMontagem,
   estiloGrafico,
   grupoDeDados,
-  largura
+  largura,
 } = storeToRefs(formStore);
 
 const tipoMontagemOptions = [
