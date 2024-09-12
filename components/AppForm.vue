@@ -14,8 +14,8 @@
     <FormStep label="3ª Etapa: filtros" v-if="agregado">
       <FormVariavel />
       <FormPeriodos />
-      <FormLocalidades />
-      <FormClassificacoes />
+      <!--FormLocalidades />
+      <FormClassificacoes /-->
     </FormStep>
     <FormStep label="3ª Etapa: montagem" v-if="pesquisa && agregado && variavel && periodos && localidades">
       <FormMontagem />
@@ -43,8 +43,8 @@ watch(pesquisa, (newPesquisa) => {
 });
 watch(agregado, (newAgregado) => {
   variavel.value = undefined;
-  periodos.value = undefined;
-  localidades.value = undefined;
-  classificacoes.value = undefined;
+  periodos.value = [];
+  localidades.value = [];
+  classificacoes.value = [];
 });
 </script>

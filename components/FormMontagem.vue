@@ -40,11 +40,6 @@ import { storeToRefs } from "pinia";
 
 const formStore = useFormStore();
 const {
-  pesquisa,
-  agregado,
-  variavel,
-  periodos,
-  localidades,
   classificacoes,
   tipoMontagem,
   estiloGrafico,

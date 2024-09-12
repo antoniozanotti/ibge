@@ -50,9 +50,9 @@ export const useFormStore = defineStore("form", () => {
   const pesquisa = ref();
   const agregado = ref();
   const variavel = ref();
-  const periodos = ref<string[]>();
-  const localidades = ref<string[]>();
-  const classificacoes = ref<string[]>();
+  const periodos = ref<string[]>([]);
+  const localidades = ref<string[]>([]);
+  const classificacoes = ref<string[]>([]);
   const tipoMontagem = ref();
   const estiloGrafico = ref();
   const grupoDeDados = ref();

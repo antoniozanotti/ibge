@@ -18,7 +18,7 @@ import type { Pesquisa } from "~/types/Pesquisa";
 
 const { isPending, data } = useAgregadosByPesquisaQuery();
 const formStore = useFormStore();
-const { pesquisa, agregado } = storeToRefs(formStore);
+const { pesquisa } = storeToRefs(formStore);
 
 const placeholder = computed(() =>
   isPending.value ? "Carregando..." : "Selecione uma pesquisa"
