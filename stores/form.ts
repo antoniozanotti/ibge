@@ -57,6 +57,8 @@ export const useFormStore = defineStore("form", () => {
   const estiloGrafico = ref();
   const grupoDeDados = ref();
   const largura = ref(500);
+  const ibgeData = ref();
+  const isValid = ref(false);
   return {
     pesquisa,
     agregado,
@@ -67,6 +69,8 @@ export const useFormStore = defineStore("form", () => {
     tipoMontagem,
     estiloGrafico,
     grupoDeDados,
-    largura
+    largura,
+    ibgeData,
+    isValid
   };
 });

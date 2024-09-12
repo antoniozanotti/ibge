@@ -9,6 +9,7 @@
     </header>
     <main class="mt-5">
       <AppForm />
+      <AppResultado />
     </main>
   </UContainer>
 </template>

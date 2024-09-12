@@ -72,7 +72,7 @@ const estiloGraficoOptions = [
   },
 ];
 const grupoDeDadosOptions = computed(() => {
-  return classificacoes.value
+  return classificacoes.value.length > 0
     ? [
         {
           value: "1P1LNC",
