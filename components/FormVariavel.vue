@@ -2,7 +2,6 @@
   <UFormGroup
     label="Variável *"
     name="variavel"
-    v-if="agregado"
     help="Será a unidade de medida principal."
   >
     <USelectMenu

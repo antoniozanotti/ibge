@@ -67,6 +67,6 @@ export const useFormStore = defineStore("form", () => {
     tipoMontagem,
     estiloGrafico,
     grupoDeDados,
-    largura,
+    largura
   };
 });

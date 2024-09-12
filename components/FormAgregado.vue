@@ -1,5 +1,5 @@
 <template>
-  <UFormGroup label="Agregado *" name="agregado" v-if="pesquisa">
+  <UFormGroup label="Agregado *" name="agregado">
     <USelectMenu
       v-model="agregado"
       :options="options"
@@ -35,11 +35,4 @@ const options = computed(() =>
         })
     : []
 );
-
-watch(agregado, () => {
-  variavel.value = undefined;
-  periodos.value = undefined;
-  localidades.value = undefined;
-  classificacoes.value = undefined;
-});
 </script>

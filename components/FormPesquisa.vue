@@ -31,8 +31,4 @@ const options = computed(() =>
         return { label: pes.nome, value: pes.id };
       })
 );
-
-watch(pesquisa, () => {
-  agregado.value = undefined;
-});
 </script>

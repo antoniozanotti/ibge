@@ -1,5 +1,5 @@
 <template>
-  <UFormGroup label="Montagem" name="montagem" v-if="pesquisa && agregado && variavel && periodos && localidades">
+  <UFormGroup label="Montagem" name="montagem">
     <UFormGroup
       label="Grupo de Dados *"
       name="grupoDeDados"
