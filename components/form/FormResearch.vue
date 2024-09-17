@@ -1,7 +1,7 @@
 <template>
-  <UFormGroup label="Pesquisa *" name="pesquisa">
+  <UFormGroup label="Pesquisa *" name="research">
     <USelectMenu
-      v-model="pesquisa"
+      v-model="research"
       :options="options"
       valueAttribute="value"
       :loading="isPending"
@@ -13,22 +13,22 @@
 <script setup lang="ts">
 import { useFormStore } from "@/stores/form";
 import { storeToRefs } from "pinia";
-import { useAgregadosByPesquisaQuery } from "@/composables/useAgregadosByPesquisaQuery";
-import type { Pesquisa } from "~/types/Pesquisa";
+import { useGetAggregatesByResearchQuery } from "@/composables/api/ibge/useGetAggregatesByResearchQuery";
+import type { Research } from "~/types/Research";
 
-const { isPending, data } = useAgregadosByPesquisaQuery();
+const { isPending, data } = useGetAggregatesByResearchQuery();
 const formStore = useFormStore();
-const { pesquisa } = storeToRefs(formStore);
+const { research } = storeToRefs(formStore);
 
 const placeholder = computed(() =>
   isPending.value ? "Carregando..." : "Selecione uma pesquisa"
 );
 
 const options = computed(() =>
-  isPending.value
-    ? []
-    : data.value.map((pes: Pesquisa) => {
-        return { label: pes.nome, value: pes.id };
+  !!data.value
+    ? data.value.map((res: Research) => {
+        return { label: res.nome, value: res.id };
       })
+    : []
 );
 </script>

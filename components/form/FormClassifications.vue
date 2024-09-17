@@ -1,17 +1,17 @@
 <template>
   <UFormGroup
     label="Classificações"
-    name="classificacoes"
-    v-if="agregado && options.length > 0"
+    name="classifications"
+    v-if="aggregated && options.length > 0"
   >
     <UFormGroup
       :label="option.label"
-      :name="`classificacoes[${option.id}]`"
+      :name="`classifications[${option.id}]`"
       v-for="option of options"
       class="pl-5 pt-3"
     >
       <USelectMenu
-        v-model="classificacoes"
+        v-model="classifications"
         :options="option.options"
         valueAttribute="value"
         :loading="isPending"
@@ -25,30 +25,28 @@
 <script setup lang="ts">
 import { useFormStore } from "@/stores/form";
 import { storeToRefs } from "pinia";
-import { useAgregadoByIdQuery } from "~/composables/useAgregadoByIdQuery";
-import type { Categoria } from "~/types/Categoria";
+import { useGetAggregatedByIdQuery } from "~/composables/api/ibge/useGetAggregatedByIdQuery";
 
 const formStore = useFormStore();
-const { agregado, classificacoes } = storeToRefs(formStore);
+const { aggregated, classifications } = storeToRefs(formStore);
+const { isPending, data } = useGetAggregatedByIdQuery(aggregated);
 
 const placeholder = computed(() =>
   isPending.value ? "Carregando..." : "Selecione uma ou mais"
 );
 
-const { isPending, data } = useAgregadoByIdQuery(agregado);
-
 const options = computed(() => {
   let opts = [];
-  if (agregado.value && !isPending.value) {
-    const classificacoesArray = data.value.classificacoes;
-    for (const classificacao of classificacoesArray) {
+  if (aggregated.value && !!data.value) {
+    const classificationsArray = data.value.classificacoes;
+    for (const classification of classificationsArray) {
       opts.push({
-        id: classificacao.id,
-        label: classificacao.nome,
-        options: classificacao.categorias.map((cat: Categoria) => {
+        id: classification.id,
+        label: classification.nome,
+        options: classification.categorias.map((cat) => {
           return {
             label: cat.nome,
-            value: `${classificacao.id}_${cat.id}`,
+            value: `${classification.id}_${cat.id}`,
           };
         }),
       });

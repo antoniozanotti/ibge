@@ -1,4 +1,4 @@
-export interface Periodo {
+export interface Period {
   id: string;
   literals: string[];
   modificacao: string;

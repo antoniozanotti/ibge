@@ -1,4 +1,4 @@
-export interface Agregado {
+export interface Aggregated {
   id: string;
   nome: string;
 }

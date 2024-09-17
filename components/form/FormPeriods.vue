@@ -1,7 +1,7 @@
 <template>
-  <UFormGroup label="Períodos *" name="periodos" v-if="agregado">
+  <UFormGroup label="Períodos *" name="periods">
     <USelectMenu
-      v-model="periodos"
+      v-model="periods"
       :options="options"
       valueAttribute="value"
       :loading="isPending"
@@ -14,21 +14,21 @@
 <script setup lang="ts">
 import { useFormStore } from "@/stores/form";
 import { storeToRefs } from "pinia";
-import type { Periodo } from "@/types/Periodo";
-import { usePeriodosByAgregadoIdQuery } from "~/composables/usePeriodosByAgregadoIdQuery";
+import type { Period } from "@/types/Period";
+import { useGetPeriodsByAggregatedIdQuery } from "~/composables/api/ibge/useGetPeriodsByAggregatedIdQuery";
 
 const formStore = useFormStore();
-const { agregado, periodos } = storeToRefs(formStore);
-const { isPending, data } = usePeriodosByAgregadoIdQuery(agregado);
+const { aggregated, periods } = storeToRefs(formStore);
+const { isPending, data } = useGetPeriodsByAggregatedIdQuery(aggregated);
 
 const placeholder = computed(() =>
   isPending.value ? "Carregando..." : "Selecione um ou mais períodos"
 );
 
 const options = computed(() =>
-  agregado.value && !isPending.value
-    ? data.value.map((periodo: Periodo) => {
-        return { label: periodo.literals[0], value: periodo.id };
+  !!data.value
+    ? data.value.map((period: Period) => {
+        return { label: period.literals[0], value: period.id };
       })
     : []
 );

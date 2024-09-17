@@ -1,11 +1,11 @@
 <template>
   <UFormGroup
     label="Variável *"
-    name="variavel"
+    name="variable"
     help="Será a unidade de medida principal."
   >
     <USelectMenu
-      v-model="variavel"
+      v-model="variable"
       :options="options"
       valueAttribute="value"
       :loading="isPending"
@@ -17,21 +17,21 @@
 <script setup lang="ts">
 import { useFormStore } from "@/stores/form";
 import { storeToRefs } from "pinia";
-import type { Variavel } from "@/types/Variavel";
-import { useAgregadoByIdQuery } from "~/composables/useAgregadoByIdQuery";
+import type { Variable } from "@/types/Variable";
+import { useGetAggregatedByIdQuery } from "~/composables/api/ibge/useGetAggregatedByIdQuery";
 
 const formStore = useFormStore();
-const { agregado, variavel } = storeToRefs(formStore);
-const { isPending, data } = useAgregadoByIdQuery(agregado);
+const { aggregated, variable } = storeToRefs(formStore);
+const { isPending, data } = useGetAggregatedByIdQuery(aggregated);
 
 const placeholder = computed(() =>
   isPending.value ? "Carregando..." : "Selecione um ou mais variáveis"
 );
 
 const options = computed(() =>
-  agregado.value && !isPending.value
-    ? data.value.variaveis.map((variavel: Variavel) => {
-        return { label: variavel.nome, value: variavel.id.toString() };
+  !!data.value
+    ? data.value.variaveis.map((variable: Variable) => {
+        return { label: variable.nome, value: variable.id.toString() };
       })
     : []
 );

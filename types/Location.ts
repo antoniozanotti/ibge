@@ -1,10 +1,10 @@
-export interface Localidade {
+export interface Location {
   id: string;
   nome: string;
-  nivel: Nivel;
+  nivel: Level;
 }
 
-interface Nivel {
+interface Level {
   id: string;
   nome: string;
 }
