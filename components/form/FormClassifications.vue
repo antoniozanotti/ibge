@@ -17,7 +17,26 @@
         :loading="isPending"
         :placeholder="placeholder"
         :multiple="true"
-      />
+      >
+        <template #label>
+          <span
+            v-if="
+              classifications.filter((c) => c.split('_')[0] == option.id).length
+            "
+            class="truncate"
+          >
+            {{
+              classifications
+                .filter((c) => c.split("_")[0] == option.id)
+                .map(
+                  (c) => option.options.find((o: any) => o.value == c)?.label
+                )
+                .join(", ")
+            }}
+          </span>
+          <span v-else>{{ placeholder }}</span>
+        </template>
+      </USelectMenu>
     </UFormGroup>
   </UFormGroup>
 </template>

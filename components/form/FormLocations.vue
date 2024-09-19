@@ -1,5 +1,5 @@
 <template>
-  <UFormGroup label="Localidades *" name="locations">
+  <UFormGroup label="Localidades" name="locations" required>
     <UFormGroup
       :label="option.label"
       :name="`locations[${option.id}]`"
@@ -13,7 +13,24 @@
         :loading="isPending"
         :placeholder="placeholder"
         :multiple="true"
-      />
+      >
+        <template #label>
+          <span
+            v-if="locations.filter((l) => l.split('_')[0] == option.id).length"
+            class="truncate"
+          >
+            {{
+              locations
+                .filter((l) => l.split("_")[0] == option.id)
+                .map(
+                  (l) => option.options.find((o: any) => o.value == l)?.label
+                )
+                .join(", ")
+            }}
+          </span>
+          <span v-else>{{ placeholder }}</span>
+        </template>
+      </USelectMenu>
     </UFormGroup>
   </UFormGroup>
 </template>

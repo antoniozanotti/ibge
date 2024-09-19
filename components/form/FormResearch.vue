@@ -1,5 +1,5 @@
 <template>
-  <UFormGroup label="Pesquisa *" name="research">
+  <UFormGroup label="Pesquisa" name="research" required>
     <USelectMenu
       v-model="research"
       :options="options"

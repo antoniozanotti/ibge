@@ -1,8 +1,9 @@
 <template>
   <UFormGroup
-    label="Variável *"
+    label="Variável"
     name="variable"
     help="Será a unidade de medida principal."
+    required
   >
     <USelectMenu
       v-model="variable"

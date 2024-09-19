@@ -1,10 +1,11 @@
 <template>
   <UFormGroup label="Montagem" name="composition">
     <UFormGroup
-      label="Grupo de Dados *"
+      label="Grupo de Dados"
       name="dataGroup"
       class="pl-5 pt-3"
       help="O item no plural irá aparecer na tabela ou gráfico, os demais serão considerados apenas como filtros da consulta."
+      required
     >
       <URadioGroup v-model="dataGroup" :options="dataGroupOptions" />
     </UFormGroup>
@@ -16,9 +17,10 @@
       <UInput v-model="legend" />
     </UFormGroup>
     <UFormGroup
-      label="Tipo de Montagem *"
+      label="Tipo de Montagem"
       name="compositionType"
       class="pl-5 pt-3"
+      required
     >
       <URadioGroup
         v-model="compositionType"
@@ -26,10 +28,11 @@
       />
     </UFormGroup>
     <UFormGroup
-      label="Estilo do Gráfico *"
+      label="Estilo do Gráfico"
       name="chartStyle"
       class="pl-5 pt-3"
       v-if="compositionType == CompositionType.CHART"
+      required
     >
       <URadioGroup v-model="chartStyle" :options="chartStyleOptions" />
     </UFormGroup>

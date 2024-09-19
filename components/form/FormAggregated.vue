@@ -1,5 +1,5 @@
 <template>
-  <UFormGroup label="Agregado *" name="aggregated">
+  <UFormGroup label="Agregado" name="aggregated" required>
     <USelectMenu
       v-model="aggregated"
       :options="options"
