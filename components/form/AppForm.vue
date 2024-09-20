@@ -19,8 +19,8 @@
       <FormClassifications />
     </FormStage>
     <FormStage
-      label="3ª Etapa: montagem"
-      v-if="research && aggregated && variable && periods && locations"
+      label="4ª Etapa: montagem"
+      v-if="research && aggregated && variable && periods.length > 0 && locations.length > 0"
     >
       <FormComposition />
       <FormFinish v-if="compositionType" />
