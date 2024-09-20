@@ -26,7 +26,7 @@ const { aggregated, variable } = storeToRefs(formStore);
 const { isPending, data } = useGetAggregatedByIdQuery(aggregated);
 
 const placeholder = computed(() =>
-  isPending.value ? "Carregando..." : "Selecione um ou mais variáveis"
+  isPending.value ? "Carregando..." : "Selecione uma ou mais variáveis"
 );
 
 const options = computed(() =>
