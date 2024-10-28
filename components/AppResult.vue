@@ -1,6 +1,6 @@
 <template>
   <div class="bg-gray-100 rounded p-2 mt-4" v-if="data">
-    <h2 class="bg-gray-200 text-primary-500 p-2 rounded">Resultado</h2>
+    <h2 class="bg-gray-200 text-primary-800 p-2 rounded">Resultado</h2>
     <UTable
       :columns="
         data.headerSet.map((item, index) => {
@@ -19,6 +19,8 @@
         labels: data.headerSet,
         datasets: [{ label:data.variable, data: data.resultSet[0].map((item) => parseInt(item)) }],
       }"
+      alt="Gráfico"
+      title="Gráfico"
     ></component>
   </div>
 </template>

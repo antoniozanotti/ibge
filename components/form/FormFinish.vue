@@ -1,3 +1,3 @@
 <template>
-  <UButton type="submit"> Finalizar </UButton>
+  <UButton type="submit" color="gray"> Finalizar </UButton>
 </template>

@@ -1,13 +1,19 @@
 import { defineConfig, devices } from "@playwright/test";
 export default defineConfig({
-  testDir: "./tests",
+  testDir: "./e2e",
   fullyParallel: true,
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   workers: process.env.CI ? 1 : undefined,
-  reporter: process.env.CI ? "dot" : "list",
+  reporter: "html",
+  testMatch: "*-test.ts",
+  expect: {
+    timeout: 10000,
+  },
   use: {
-    baseURL: "http://localhost:3000",
+    baseURL: process.env.CI
+      ? "https://ibge.antoniozanotti.com"
+      : "http://localhost:3000",
     trace: "on-first-retry",
   },
   projects: [

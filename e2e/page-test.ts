@@ -16,5 +16,8 @@ test.describe("Page", () => {
     await expect(
       page.getByText("Conforme você for selecionando as opções")
     ).toBeVisible();
+
+    // Screenshot
+    await expect(page).toHaveScreenshot();
   });
 });

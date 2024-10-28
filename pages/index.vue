@@ -9,7 +9,7 @@
         ao final você poderá gerar seu gráfico ou tabela.
         <ULink
           to="https://servicodados.ibge.gov.br/api/docs/agregados?versao=3#api-_"
-          class="text-primary"
+          class="text-primary-700"
           title="API IBGE"
           target="_blank"
           :external="true"
@@ -30,4 +30,9 @@ useSeoMeta({
   description:
     "Conforme você for selecionando as opções, novas opções serão mostradas, ao final você poderá gerar seu gráfico ou tabela.",
 });
+useHead({
+  htmlAttrs: {
+    lang: 'pt-BR'
+  }
+})
 </script>
